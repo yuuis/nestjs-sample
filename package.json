@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm run --parallel dev"
+    "dev": "pnpm run --parallel dev",
+    "build:server": "pnpm --filter server build",
+    "build:web": "pnpm --filter web build",
+    "start:server": "pnpm --filter server start:prod",
+    "start:web": "pnpm --filter web start"
   },
   "repository": "https://github.com/yuuis/nestjs-sample",
   "license": "MIT",
