@@ -2,10 +2,11 @@ import {TrpcService} from '@server/trpc/trpc.service';
 import {INestApplication, Injectable} from '@nestjs/common';
 import { z } from 'zod';
 import * as trpcExpress from '@trpc/server/adapters/express';
+import {ProductsService} from '@server/modules/products/products.service';
 
 @Injectable()
 export class TrpcRouter {
-  constructor(private readonly trpc: TrpcService) {}
+  constructor(private readonly trpc: TrpcService, private readonly productsService: ProductsService) {}
 
   appRouter = this.trpc.router({
     hello: this.trpc.procedure
@@ -19,6 +20,12 @@ export class TrpcRouter {
         return {
           greeting: `Hello ${name ?? 'World'}`,
         }
+      }),
+    getProducts: this.trpc.procedure
+      .query(async () => {
+        return {
+          products: await this.productsService.find(),
+        };
       }),
     // getUsers: this.trpc.procedure
     //   .input(
