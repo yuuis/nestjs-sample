@@ -19,7 +19,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prisma-generate": "pnpm exec prisma generate"
+    "prisma-generate": "pnpm exec prisma generate",
+    "prisma-db-pull": "pnpm exec prisma db pull && pnpm exec prisma-case-format --file ./src/database/schema.prisma"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -27,6 +28,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@prisma/client": "^4.16.2",
     "@trpc/server": "^10.34.0",
+    "prisma-case-format": "^1.7.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "zod": "^3.21.4"
